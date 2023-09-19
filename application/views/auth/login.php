@@ -9,16 +9,26 @@
         @import url('https://fonts.googleapis.com/css2?family=Agdasima&family=Poppins&display=swap');
 
         body {
-            font-family: 'Poppins', sans-serif;
+            top: 0;
+            left: 0;
             margin: 0;
             padding: 0;
-            background: url(https://foto.data.kemdikbud.go.id/getImage/20328986/8.jpg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
 
+
+
+        .full-bg {
+            background-image: url(https://source.unsplash.com/random/1920x1080);
+            background-position: center center;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            z-index: -99;
+            transition: all 0.3s ease-in;
         }
 
         .container {
@@ -80,22 +90,50 @@
                 max-width: 350px;
             }
         }
+        a {
+            color: #498ffc;
+            /* Warna teks tautan */
+            text-decoration: none;
+            /* Menghilangkan garis bawah tautan */
+            font-weight: bold;
+            /* Ketebalan teks tautan */
+        }
+
+        a:hover {
+            color: #70c1ff;
+            /* Warna teks tautan saat dihover */
+        }
+
+        .login-link a {
+            color: #498ffc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            color: #70c1ff;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="card">
-            <h2>Login Form</h2>
-            <form action="<?php echo base_url(); ?>Auth/aksi_login" method="post">
-                <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Enter your email" name="email">
+    <div class="full-bg">
+        <div class="container">
+            <div class="card">
+                <h2>Login Form</h2>
+                <form action="<?php echo base_url(); ?>Auth/aksi_login" method="post">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Enter your email" name="email">
 
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" name="password">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" name="password">
 
-                <button type="submit">Login</button>
-            </form>
+                    <button type="submit">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 10px;">
+                    Belum punya akun? <a href="<?php echo base_url('auth/register'); ?>">Daftar di sini</a>
+                </p>
+            </div>
         </div>
     </div>
 </body>

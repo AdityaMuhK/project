@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
@@ -13,11 +13,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
+            /* Light blue background */
         }
 
         #sidebar {
-            background-color: #87cefa; /* Light blue sidebar */
+            background-color: #3399ff;
+            /* Light blue sidebar */
             color: #fff;
             height: 100%;
             width: 250px;
@@ -36,7 +38,8 @@
         }
 
         #sidebar a:hover {
-            background-color: #6495ed; /* Darker blue on hover */
+            background-color: #6495ed;
+            /* Darker blue on hover */
         }
 
         #content {
@@ -70,7 +73,7 @@
             <i class="fas fa-chart-line mr-2"></i> Dashboard
         </a>
         <a href="<?php echo base_url('admin/siswa') ?>">
-            <i class="fas fa-table mr-2"></i> Table
+            <i class="fas fa-table mr-2"></i> Siswa
         </a>
         <a href="<?php echo base_url('admin/guru') ?>">
             <i class="fas fa-chalkboard mr-2"></i> Guru
@@ -82,12 +85,69 @@
             <div class="card-body d-flex justify-content-between align-items-center">
                 <h1 class="text-4xl m-0">Dashboard</h1>
                 <a href="<?php echo base_url('auth/logout'); ?>">
-                    <i class="fas fa-sign-out-alt fa-2x"></i>
+                    <i class="fas fa-sign-out-alt fa-2x text-dark"></i>
                 </a>
             </div>
         </div>
 
-        <!-- Main Content Goes Here -->
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card bg-primary text-white shadow border-10 rounded">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="fas fa-door-closed mr-2" style="font-size: 60px;"></i>
+                        </div>
+                        <div class="ml-auto">Jumlah Kelas</div>
+                        <span style="font-size: 24px;">
+                            <?php echo $kelas ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-primary text-white shadow border-10 rounded">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="fas fa-file-invoice mr-2" style="font-size: 60px;"></i>
+                        </div>
+                        <div class="ml-auto">Jumlah Mapel</div>
+                        <span style="font-size: 24px;">
+                            <?php echo $mapel ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-primary text-white shadow border-10 rounded">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="fas fa-user mr-2" style="font-size: 60px;"></i>
+                        </div>
+                        <div class="ml-auto">Jumlah Siswa</div>
+                        <span style="font-size: 24px;">
+                            <?php echo $siswa ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card bg-primary text-white shadow border-10 rounded">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="fas fa-user-tie mr-2" style="font-size: 60px;"></i>
+                            <p class="m-0"></p>
+                        </div>
+                        <div class="ml-auto">Jumlah Guru</div>
+                        <span style="font-size: 24px;">
+                            <?php echo $guru ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
         <script>
             function toggleSidebar() {

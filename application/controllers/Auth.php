@@ -10,25 +10,34 @@ class Auth extends CI_Controller {
 		$this->load->database();
     }
 
-    public function index()
-    {
-        // Cek apakah pengguna sudah login
-        if ($this->session->userdata('logged_in')) {
-            // Jika sudah login, redirect ke halaman dashboard atau halaman lain yang sesuai
-            if ($this->session->userdata('role') == 'admin') {
-                redirect(base_url(). "admin");
-            } else {
-                redirect(base_url(). "auth");
-            }
-        } else {
-            // Jika belum login, tampilkan halaman login
-            $this->load->view('auth/login');
-        }
-    }
-    
-    public function aksi_login() 
-    {
-        // ... (kode login Anda tetap sama)
+    public function index()  
+    {  
+     $this->load->view('auth/login');  
+    }  
+    public function aksi_login() { 
+        $email = $this->input->post('email', true);  
+        $password = $this->input->post('password', true);  
+        $data = [ 'email' => $email, ];  
+        $query = $this->m_model->getwhere('admin', $data);  
+        $result = $query->row_array();  
+         
+        if (!empty($result) && md5($password) === $result['password']) {  
+        $data = [  
+            'logged_in' => TRUE,  
+            'email' => $result['email'],  
+            'username' => $result['username'],  
+            'role' => $result['role'],  
+            'id' => $result['id'],  
+        ];  
+        $this->session->set_userdata($data);  
+        if ($this->session->userdata('role') == 'admin') {  
+            redirect(base_url()."admin");  
+        } else {  
+            redirect(base_url()."auth");  
+        }  
+        } else {  
+        redirect(base_url()."auth");  
+        }  
     }
 
     public function register() {

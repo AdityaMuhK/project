@@ -13,11 +13,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
+            /* Light blue background */
         }
 
         #sidebar {
-            background-color: #87cefa; /* Light blue sidebar */
+            background-color: #3399ff;
+            /* Light blue sidebar */
             color: #fff;
             height: 100%;
             width: 250px;
@@ -36,7 +38,8 @@
         }
 
         #sidebar a:hover {
-            background-color: #6495ed; /* Darker blue on hover */
+            background-color: #6495ed;
+            /* Darker blue on hover */
         }
 
         #content {
@@ -70,7 +73,7 @@
             <i class="fas fa-chart-line mr-2"></i> Dashboard
         </a>
         <a href="<?php echo base_url('admin/siswa') ?>">
-            <i class="fas fa-table mr-2"></i> Table
+            <i class="fas fa-table mr-2"></i> Siswa
         </a>
         <a href="<?php echo base_url('admin/guru') ?>">
             <i class="fas fa-chalkboard mr-2"></i> Guru
@@ -82,23 +85,76 @@
             <div class="card-body d-flex justify-content-between align-items-center">
                 <h1 class="text-4xl m-0">Siswa</h1>
                 <a href="<?php echo base_url('auth/logout'); ?>">
-                    <i class="fas fa-sign-out-alt fa-2x"></i>
+                    <i class="fas fa-sign-out-alt fa-2x text-dark"></i>
                 </a>
             </div>
         </div>
 
-        <!-- Main Content Goes Here -->
-
-        <script>
-            function toggleSidebar() {
-                var sidebar = document.getElementById("sidebar");
-                var content = document.getElementById("content");
-                sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-                content.style.marginLeft = content.style.marginLeft === "250px" ? "0" : "250px";
-            }
-        </script>
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">Daftar Siswa</h5>
+                    <a href="<?php echo base_url('admin/add_siswa') ?>" class="btn btn-success m-2">
+                        <i class="fas fa-plus"></i> Tambah
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Siswa</th>
+                                <th>NISN</th>
+                                <th>Gender</th>
+                                <th>Kelas</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 0;
+                            foreach ($siswa as $row):
+                                $no++ ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $no ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->nama_siswa ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->nisn ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->gender ?>
+                                    </td>
+                                    <td>
+                                        <?php echo tampil_full_kelas_byid($row->id_kelas) ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo base_url('admin/ubah_siswa/') . $row->id_siswa ?>"
+                                            class="btn btn-primary">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <button onClick="hapus(<?php echo $row->id_siswa; ?>)" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <script>
+        function hapus(id) {
+            var yes = confirm('Yakin DI Hapus?');
+            if (yes == true) {
+                window.location.href = "<?php echo base_url('admin/hapus_siswa/') ?>" + id;
+            }
+        }
+    </script>
 </body>
 
 </html>

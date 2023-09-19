@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ubah Guru</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
@@ -83,7 +83,7 @@
     <div id="content">
         <div class="card mb-4 shadow">
             <div class="card-body d-flex justify-content-between align-items-center">
-                <h1 class="text-4xl m-0">Tambah Siswa</h1>
+                <h1 class="text-4xl m-0">Tambah Guru</h1>
                 <a href="<?php echo base_url('auth/logout'); ?>">
                     <i class="fas fa-sign-out-alt fa-2x text-dark"></i>
                 </a>
@@ -92,45 +92,45 @@
 
         <div class="card mb-4 shadow">
             <div class="card-body">
-                <h5 class="card-title">Edit Data Siswa</h5>
-                <?php foreach ($siswa as $data_siswa): ?>
-                    <form action="<?php echo base_url('admin/aksi_ubah_siswa') ?>" enctype="multipart/form-data"
+                <h5 class="card-title">Edit Data Guru</h5>
+                <?php foreach ($guru as $data_guru): ?>
+                    <form action="<?php echo base_url('admin/aksi_ubah_guru') ?>" enctype="multipart/form-data"
                         method="POST">
-                        <input name="id_siswa" type="hidden" value="<?php echo $data_siswa->id_siswa ?>">
+                        <input name="id_guru" type="hidden" value="<?php echo $data_guru->id_guru ?>">
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="nama">Nama Siswa</label>
+                                    <label for="nama">Nama Guru</label>
                                     <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Masukkan Nama Siswa" value="<?php echo $data_siswa->nama_siswa ?>"
+                                        placeholder="Masukkan Nama Guru" value="<?php echo $data_guru->nama_guru ?>"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nisn">NISN</label>
-                                    <input type="text" class="form-control" id="nisn" name="nisn"
-                                        placeholder="Masukkan NISN" value="<?php echo $data_siswa->nisn ?>" required>
+                                    <label for="nik">NIK</label>
+                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK"
+                                        value="<?php echo $data_guru->nik ?>" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
                                     <select class="form-control" id="gender" name="gender" required>
-                                        <option selected value="<?php echo $data_siswa->gender ?>">
-                                            <?php echo $data_siswa->gender ?>
+                                        <option selected value="<?php echo $data_guru->gender ?>">
+                                            <?php echo $data_guru->gender ?>
                                         </option>
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>
-                                <label for="mapel">Kelas</label>
-                                <select class="form-control" id="kelas" name="kelas" required>
-                                    <option selected value="<?php $data_siswa->id_kelas ?>">
-                                        <?php echo tampil_full_kelas_byid($data_siswa->id_kelas) ?>
+                                <label for="mapel">Mapel</label>
+                                <select class="form-control" id="mapel" name="mapel" required>
+                                    <option selected value="<?php $data_guru->id_mapel ?>">
+                                        <?php echo tampil_full_mapel_byid($data_guru->id_mapel) ?>
                                     </option>
-                                    <?php foreach ($kelas as $row): ?>
+                                    <?php foreach ($mapel as $row): ?>
                                         <option value="<?php echo $row->id ?>">
-                                            <?php echo $row->tingkat_kelas . ' ' . $row->jurusan_kelas ?>
+                                            <?php echo $row->nama_mapel ?>
                                         </option>
                                     <?php endforeach ?>
                                 </select>

@@ -1,3 +1,4 @@
+<!-- SISWA -->
 <?php
 function tampil_full_kelas_byid($id)
 {
@@ -6,6 +7,19 @@ function tampil_full_kelas_byid($id)
     $result = $ci->db->where('id', $id)->get('kelas');
     foreach ($result->result() as $c) {
         $stmt = $c->tingkat_kelas . ' ' . $c->jurusan_kelas;
+        return $stmt;
+    }
+}
+?>
+<!-- GURU -->
+<?php
+function tampil_full_mapel_byid($id)
+{
+    $ci = &get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id', $id)->get('mapel');
+    foreach ($result->result() as $c) {
+        $stmt = $c->nama_mapel;
         return $stmt;
     }
 }
