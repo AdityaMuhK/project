@@ -38,7 +38,7 @@
         }
 
         #sidebar a:hover {
-            background-color: #6495ed;
+            background-color: #3366ff;
             /* Darker blue on hover */
         }
 
@@ -48,32 +48,17 @@
             transition: 0.3s;
             padding: 20px;
         }
-
-        .toggle-btn {
-            position: absolute;
-            left: 250px;
-            top: 20px;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .toggle-btn:hover {
-            color: #555;
-        }
     </style>
 </head>
 
 <body>
     <!-- Sidebar -->
     <div id="sidebar">
-        <div class="toggle-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </div>
         <a href="<?php echo base_url('admin') ?>">
             <i class="fas fa-chart-line mr-2"></i> Dashboard
         </a>
         <a href="<?php echo base_url('admin/siswa') ?>">
-            <i class="fas fa-table mr-2"></i> Siswa
+            <i class="fas fa-user mr-2"></i> Siswa
         </a>
         <a href="<?php echo base_url('admin/guru') ?>">
             <i class="fas fa-chalkboard mr-2"></i> Guru
@@ -84,8 +69,8 @@
         <div class="card mb-4 shadow">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <h1 class="text-4xl m-0">Tambah Guru</h1>
-                <a href="<?php echo base_url('auth/logout'); ?>">
-                    <i class="fas fa-sign-out-alt fa-2x text-dark"></i>
+                <a href="<?php echo base_url('admin/guru'); ?>">
+                    <img src="https://media.tenor.com/VtFUW-durpoAAAAC/kururin-kuru-kuru.gif" alt="" width="50px" height="50px" >
                 </a>
             </div>
         </div>
@@ -141,6 +126,32 @@
                 <?php endforeach ?>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <!-- SweetAlert untuk berhasil mengubah siswa -->
+        <?php if ($this->session->flashdata('success')): ?>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '<?= $this->session->flashdata('success') ?>',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </script>
+        <?php endif; ?>
+
+        <!-- SweetAlert untuk gagal mengubah siswa -->
+        <?php if ($this->session->flashdata('error')): ?>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: '<?= $this->session->flashdata('error') ?>',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </script>
+        <?php endif; ?>
 </body>
 
 </html>

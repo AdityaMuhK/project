@@ -53,7 +53,7 @@ class Admin extends CI_Controller
 		$eksekusi = $this->m_model->ubah_data
 		('siswa', $data, array('id_siswa' => $this->input->post('id_siswa')));
 		if ($eksekusi) {
-			$this->session->set_flashdata('sukses', 'berhasil');
+			$this->session->set_flashdata('success', 'Berhasil mengubah siswa!');;
 			redirect(base_url('admin/siswa'));
 		} else {
 			$this->session->set_flashdata('error', 'gagal..');
@@ -71,14 +71,19 @@ class Admin extends CI_Controller
 		];
 
 		$this->m_model->tambah_data('siswa', $data);
+		// SweetAlert untuk berhasil menambahkan siswa
+		$this->session->set_flashdata('success', 'Berhasil menambahkan siswa!');
 		redirect(base_url('admin/siswa'));
 	}
 	// hapus siswa
 	public function hapus_siswa($id)
 	{
 		$this->m_model->delete('siswa', 'id_siswa', $id);
+		// SweetAlert untuk berhasil mengahapus siswa
+		$this->session->set_flashdata('success', 'Siswa berhasil dihapus!');
 		redirect(base_url('admin/siswa'));
 	}
+
 
 
 
@@ -102,6 +107,7 @@ class Admin extends CI_Controller
 		$data['mapel'] = $this->m_model->get_data('mapel')->result();
 		$this->load->view('admin/ubah_guru', $data);
 	}
+	
 	// aksi ubah guru
 	public function aksi_ubah_guru()
 	{
@@ -114,13 +120,14 @@ class Admin extends CI_Controller
 		$eksekusi = $this->m_model->ubah_data
 		('guru', $data, array('id_guru' => $this->input->post('id_guru')));
 		if ($eksekusi) {
-			$this->session->set_flashdata('sukses', 'berhasil');
+			$this->session->set_flashdata('success', 'Berhasil mengubah guru!');;
 			redirect(base_url('admin/guru'));
 		} else {
 			$this->session->set_flashdata('error', 'gagal..');
 			redirect(base_url('admin/ubah_guru/' . $this->input - post('id_guru')));
 		}
 	}
+
 	// aksi tambah guru
 	public function aksi_add_guru()
 	{
@@ -132,6 +139,8 @@ class Admin extends CI_Controller
 		];
 
 		$this->m_model->tambah_data('guru', $data);
+		// SweetAlert untuk berhasil menambahkan guru
+		$this->session->set_flashdata('success', 'Berhasil menambahkan guru!');
 		redirect(base_url('admin/guru'));
 	}
 
@@ -141,6 +150,8 @@ class Admin extends CI_Controller
 	public function hapus_guru($id)
 	{
 		$this->m_model->delete('guru', 'id_guru', $id);
+		// SweetAlert untuk berhasil mengahapus guru
+		$this->session->set_flashdata('success', 'Guru berhasil dihapus!');
 		redirect(base_url('admin/guru'));
 	}
 }

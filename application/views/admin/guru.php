@@ -38,7 +38,7 @@
         }
 
         #sidebar a:hover {
-            background-color: #6495ed;
+            background-color: #3366ff;
             /* Darker blue on hover */
         }
 
@@ -48,32 +48,17 @@
             transition: 0.3s;
             padding: 20px;
         }
-
-        .toggle-btn {
-            position: absolute;
-            left: 250px;
-            top: 20px;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .toggle-btn:hover {
-            color: #555;
-        }
     </style>
 </head>
 
 <body>
 
     <div id="sidebar">
-        <div class="toggle-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </div>
         <a href="<?php echo base_url('admin') ?>">
             <i class="fas fa-chart-line mr-2"></i> Dashboard
         </a>
         <a href="<?php echo base_url('admin/siswa') ?>">
-            <i class="fas fa-table mr-2"></i> Siswa
+            <i class="fas fa-user mr-2"></i> Siswa
         </a>
         <a href="<?php echo base_url('admin/guru') ?>">
             <i class="fas fa-chalkboard mr-2"></i> Guru
@@ -84,8 +69,8 @@
         <div class="card mb-4 shadow">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <h1 class="text-4xl m-0">Guru</h1>
-                <a href="<?php echo base_url('auth/logout'); ?>">
-                    <i class="fas fa-sign-out-alt fa-2x text-dark"></i>
+                <a type="button" onclick="confirmLogout()">
+                    <i class="fas fa-sign-out-alt fa-2x text-danger"></i>
                 </a>
             </div>
         </div>
@@ -147,12 +132,52 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         function hapus(id) {
-            var yes = confirm('Yakin DI Hapus?');
-            if (yes == true) {
-                window.location.href = "<?php echo base_url('admin/hapus_guru/') ?>" + id;
-            }
+            Swal.fire({
+                title: 'Yakin DI Hapus?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?php echo base_url('admin/hapus_guru/') ?>" + id;
+                }
+            });
+        }
+
+    </script>
+
+    <?php if ($this->session->flashdata('success')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '<?= $this->session->flashdata('success') ?>',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    <?php endif; ?>
+
+    <!-- LOGOUT -->
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Yakin mau LogOut?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?php echo base_url('auth/logout') ?>";
+                }
+            });
         }
     </script>
 </body>
