@@ -96,3 +96,4 @@ class Auth extends CI_Controller
         redirect(base_url('auth'));
     }
 }
+?>

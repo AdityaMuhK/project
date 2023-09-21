@@ -90,6 +90,7 @@
                 max-width: 350px;
             }
         }
+
         a {
             color: #498ffc;
             /* Warna teks tautan */
@@ -114,6 +115,7 @@
             color: #70c1ff;
         }
     </style>
+
 </head>
 
 <body>
@@ -127,6 +129,9 @@
 
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter your password" name="password">
+                    <label for="showPasswordCheckbox">Show Password <input type="checkbox"
+                            id="showPasswordCheckbox"></label>
+
 
                     <button type="submit">Login</button>
                 </form>
@@ -136,7 +141,12 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.getElementById('showPasswordCheckbox').addEventListener('change', function () {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+    </script>
 </body>
 
 </html>

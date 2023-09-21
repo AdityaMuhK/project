@@ -133,6 +133,8 @@
 
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter your password" name="password">
+                    <label for="showPasswordCheckbox">Show Password <input type="checkbox"
+                            id="showPasswordCheckbox"></label>
 
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
@@ -149,6 +151,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('showPasswordCheckbox').addEventListener('change', function () {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+    </script>
 </body>
 
 </html>
