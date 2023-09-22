@@ -28,7 +28,7 @@
         <img src="https://binusasmg.sch.id/ppdb/logobinusa.png" alt="Logo SMK Bina Nusantara" width="200"> <!-- Ganti 'url_logo_smk_bina_nusantara.png' dengan URL logo dari Google -->
         <h1>Selamat Datang di SMK Bina Nusantara</h1>
         <p>Silakan login untuk melanjutkan</p>
-        <a href="auth/login.php" class="btn btn-primary">Login</a>
+        <a href="<?php echo base_url('auth'); ?>" class="btn btn-primary">Login</a>
     </div>
 </body>
 

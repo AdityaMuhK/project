@@ -49,82 +49,100 @@
             padding: 20px;
         }
 
+        @media screen and (max-width: 788px) {
+            #sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            #content {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <a href="<?php echo base_url('admin') ?>">
-            <i class="fas fa-chart-line mr-2"></i> Dashboard
-        </a>
-        <a href="<?php echo base_url('admin/siswa') ?>">
-            <i class="fas fa-user mr-2"></i> Siswa
-        </a>
-        <a href="<?php echo base_url('admin/guru') ?>">
-            <i class="fas fa-chalkboard mr-2"></i> Guru
-        </a>
-    </div>
-
-    <div id="content">
-        <div class="card mb-4 shadow">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <h1 class="text-4xl m-0">Tambah Siswa</h1>
-                <a href="<?php echo base_url('admin/siswa'); ?>">
-                    <img src="https://media.tenor.com/VtFUW-durpoAAAAC/kururin-kuru-kuru.gif" alt="" width="50px" height="50px">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <a href="<?php echo base_url('admin') ?>">
+                    <i class="fas fa-chart-line mr-2"></i> Dashboard
+                </a>
+                <a href="<?php echo base_url('admin/siswa') ?>">
+                    <i class="fas fa-user mr-2"></i> Siswa
+                </a>
+                <a href="<?php echo base_url('admin/guru') ?>">
+                    <i class="fas fa-chalkboard mr-2"></i> Guru
                 </a>
             </div>
-        </div>
 
-        <div class="card mb-4 shadow">
-            <div class="card-body">
-                <h5 class="card-title">Edit Data Siswa</h5>
-                <?php foreach ($siswa as $data_siswa): ?>
-                    <form action="<?php echo base_url('admin/aksi_ubah_siswa') ?>" enctype="multipart/form-data"
-                        method="POST">
-                        <input name="id_siswa" type="hidden" value="<?php echo $data_siswa->id_siswa ?>">
+            <div id="content">
+                <div class="card mb-4 shadow">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h1 class="text-4xl m-0">Tambah Siswa</h1>
+                        <a href="<?php echo base_url('admin/siswa'); ?>">
+                            <img src="https://media.tenor.com/VtFUW-durpoAAAAC/kururin-kuru-kuru.gif" alt=""
+                                width="50px" height="50px">
+                        </a>
+                    </div>
+                </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="nama">Nama Siswa</label>
-                                    <input type="text" class="form-control" id="nama" name="nama"
-                                        placeholder="Masukkan Nama Siswa" value="<?php echo $data_siswa->nama_siswa ?>"
-                                        required>
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Data Siswa</h5>
+                        <?php foreach ($siswa as $data_siswa): ?>
+                            <form action="<?php echo base_url('admin/aksi_ubah_siswa') ?>" enctype="multipart/form-data"
+                                method="POST">
+                                <input name="id_siswa" type="hidden" value="<?php echo $data_siswa->id_siswa ?>">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nama">Nama Siswa</label>
+                                            <input type="text" class="form-control" id="nama" name="nama"
+                                                placeholder="Masukkan Nama Siswa"
+                                                value="<?php echo $data_siswa->nama_siswa ?>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nisn">NISN</label>
+                                            <input type="text" class="form-control" id="nisn" name="nisn"
+                                                placeholder="Masukkan NISN" value="<?php echo $data_siswa->nisn ?>"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-control" id="gender" name="gender" required>
+                                                <option selected value="<?php echo $data_siswa->gender ?>">
+                                                    <?php echo $data_siswa->gender ?>
+                                                </option>
+                                                <option value="Laki-laki">Laki-laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <label for="mapel">Kelas</label>
+                                        <select class="form-control" id="kelas" name="kelas" required>
+                                            <option selected value="<?php $data_siswa->id_kelas ?>">
+                                                <?php echo tampil_full_kelas_byid($data_siswa->id_kelas) ?>
+                                            </option>
+                                            <?php foreach ($kelas as $row): ?>
+                                                <option value="<?php echo $row->id ?>">
+                                                    <?php echo $row->tingkat_kelas . ' ' . $row->jurusan_kelas ?>
+                                                </option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="nisn">NISN</label>
-                                    <input type="text" class="form-control" id="nisn" name="nisn"
-                                        placeholder="Masukkan NISN" value="<?php echo $data_siswa->nisn ?>" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-control" id="gender" name="gender" required>
-                                        <option selected value="<?php echo $data_siswa->gender ?>">
-                                            <?php echo $data_siswa->gender ?>
-                                        </option>
-                                        <option value="Laki-laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
-                                </div>
-                                <label for="mapel">Kelas</label>
-                                <select class="form-control" id="kelas" name="kelas" required>
-                                    <option selected value="<?php $data_siswa->id_kelas ?>">
-                                        <?php echo tampil_full_kelas_byid($data_siswa->id_kelas) ?>
-                                    </option>
-                                    <?php foreach ($kelas as $row): ?>
-                                        <option value="<?php echo $row->id ?>">
-                                            <?php echo $row->tingkat_kelas . ' ' . $row->jurusan_kelas ?>
-                                        </option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
-                <?php endforeach ?>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </form>
+                        <?php endforeach ?>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

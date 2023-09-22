@@ -23,4 +23,19 @@ function tampil_full_mapel_byid($id)
         return $stmt;
     }
 }
+
+?>
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+if (!function_exists('get_siswa_by_id')) {
+    function get_siswa_by_id($id_siswa)
+    {
+        $ci =& get_instance();
+        $ci->load->database();
+
+        $ci->db->where('id_siswa', $id_siswa);
+        return $ci->db->get('siswa')->row();
+    }
+}
 ?>

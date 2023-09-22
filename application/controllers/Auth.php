@@ -35,10 +35,8 @@ class Auth extends CI_Controller
             $this->session->set_userdata($data);
 
             if ($this->session->userdata('role') == 'admin') {
-                $this->session->set_flashdata('success', 'Login berhasil!');
                 redirect(base_url() . "admin");
             } else {
-                $this->session->set_flashdata('success', 'Login berhasil!');
                 redirect(base_url() . "auth");
             }
         } else {
@@ -81,8 +79,6 @@ class Auth extends CI_Controller
                 'username' => $username,
                 'role' => 'admin'
             ]);
-            // SweetAlert untuk Registrasi Berhasil
-            $this->session->set_flashdata('success', 'Registrasi berhasil!');
             redirect(base_url() . "admin");
         } else {
             // Registrasi gagal
@@ -93,7 +89,7 @@ class Auth extends CI_Controller
     function logout()
     {
         $this->session->sess_destroy();
-        redirect(base_url('auth'));
+        redirect(base_url('/'));
     }
 }
 ?>

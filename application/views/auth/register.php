@@ -131,16 +131,17 @@
                     <label for="username">Username</label>
                     <input type="text" id="username" placeholder="Enter your username" name="username">
 
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" name="password">
-                    <label for="showPasswordCheckbox">Show Password <input type="checkbox"
-                            id="showPasswordCheckbox"></label>
-
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" name="password">
+                    <label for="showPasswordCheckbox">Show Password <input type="checkbox"
+                            id="showPasswordCheckbox"></label>
+
 
 
                     <button type="submit">Login</button>

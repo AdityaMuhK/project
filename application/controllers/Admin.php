@@ -83,9 +83,12 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('success', 'Siswa berhasil dihapus!');
 		redirect(base_url('admin/siswa'));
 	}
+	
+	public function detail_siswa($id_siswa) {
+        $data['siswa'] = $this->m_model->get_siswa_by_id($id_siswa); // Mengambil data siswa dari model
 
-
-
+        $this->load->view('admin/detail_siswa', $data); // Memuat view
+    }
 
 
 	// guru
@@ -144,7 +147,11 @@ class Admin extends CI_Controller
 		redirect(base_url('admin/guru'));
 	}
 
+	public function detail_guru($id_guru) {
+        $data['guru'] = $this->m_model->get_guru_by_id($id_guru); // Mengambil data siswa dari model
 
+        $this->load->view('admin/detail_guru', $data); // Memuat view
+    }
 
 	// hapus guru
 	public function hapus_guru($id)
