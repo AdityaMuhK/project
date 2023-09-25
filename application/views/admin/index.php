@@ -71,6 +71,7 @@
     <div class="container-fluid">
         <div class="row">
             <div id="sidebar" class="col-md-3 col-lg-2 d-md-block">
+                <h1><i class="fas fa-school mr-2"></i>School</h1>
                 <a href="<?php echo base_url('admin') ?>">
                     <i class="fas fa-chart-line mr-2"></i> Dashboard
                 </a>
@@ -128,7 +129,7 @@
                                         </div>
                                         <div class="ml-auto">Jumlah Siswa</div>
                                         <span style="font-size: 24px;">
-                                            <?php echo $siswa ?>
+                                            <?php echo $siswa_count; ?>
                                         </span>
                                     </div>
                                 </div>
@@ -142,11 +143,100 @@
                                         </div>
                                         <div class="ml-auto">Jumlah Guru</div>
                                         <span style="font-size: 24px;">
-                                            <?php echo $guru ?>
+                                            <?php echo $guru_count ?>
                                         </span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SISWA -->
+
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="card-title">Data Siswa</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Siswa</th>
+                                        <th>NISN</th>
+                                        <th>Gender</th>
+                                        <th>Kelas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 0;
+                                    foreach ($siswa_data as $row):
+                                        $no++ ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $no ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->nama_siswa ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->nisn ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->gender ?>
+                                            </td>
+                                            <td>
+                                                <?php echo tampil_full_kelas_byid($row->id_kelas) ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- GURU -->
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="card-title">Data Guru</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Guru</th>
+                                        <th>NIK</th>
+                                        <th>Gender</th>
+                                        <th>Mapel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 0;
+                                    foreach ($guru_data as $row):
+                                        $no++ ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $no ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->nama_guru ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->nik ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row->gender ?>
+                                            </td>
+                                            <td>
+                                                <?php echo tampil_full_mapel_byid($row->id_mapel) ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

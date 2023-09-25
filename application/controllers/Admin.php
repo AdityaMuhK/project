@@ -17,9 +17,11 @@ class Admin extends CI_Controller
 	public function index()
 	{
 		$data['mapel'] = $this->m_model->get_data('mapel')->num_rows();
-		$data['siswa'] = $this->m_model->get_data('siswa')->num_rows();
-		$data['guru'] = $this->m_model->get_data('guru')->num_rows();
+		$data['siswa_count'] = $this->m_model->get_data('siswa')->num_rows();
+		$data['guru_count'] = $this->m_model->get_data('guru')->num_rows();
 		$data['kelas'] = $this->m_model->get_data('kelas')->num_rows();
+		$data['siswa_data'] = $this->m_model->get_data('siswa')->result();
+		$data['guru_data'] = $this->m_model->get_data('guru')->result();
 		$this->load->view('admin/index', $data);
 	}
 	// siswa 

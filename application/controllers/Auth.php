@@ -47,7 +47,6 @@ class Auth extends CI_Controller
 
 
 
-
     // REGISTER
     public function register()
     {

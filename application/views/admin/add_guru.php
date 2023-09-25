@@ -68,7 +68,9 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div id="sidebar">
+            <div id="sidebar" class="col-md-3 col-lg-2 d-md-block">
+            <h1><i class="fas fa-school mr-2"></i>School</h1>
+
                 <a href="<?php echo base_url('admin') ?>">
                     <i class="fas fa-chart-line mr-2"></i> Dashboard
                 </a>

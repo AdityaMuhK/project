@@ -123,7 +123,7 @@
     <div class="full-bg">
         <div class="container">
             <div class="card">
-                <h2>Login Form</h2>
+                <h2>Register Form</h2>
                 <form action="<?php echo base_url('auth/aksi_register'); ?>" method="post">
                     <label for="email">Email</label>
                     <input type="text" id="email" placeholder="Enter your email" name="email">
